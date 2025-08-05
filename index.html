@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Interactive Gallery</title>
+  <style>
+    #image {
+      background-color: #eee;
+      height: 300px;
+      width: 500px;
+      text-align: center;
+      line-height: 300px;
+      font-size: 20px;
+      color: #333;
+      background-size: cover;
+      margin-bottom: 20px;
+    }
+
+    .preview {
+      height: 100px;
+      margin: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="image">Hover over an image below to display here.</div>
+
+  <img class="preview" src="https://via.placeholder.com/100?text=Pic1" alt="Picture 1" onmouseover="upDate(this)" onmouseout="undo()">
+  <img class="preview" src="https://via.placeholder.com/100?text=Pic2" alt="Picture 2" onmouseover="upDate(this)" onmouseout="undo()">
+  <img class="preview" src="https://via.placeholder.com/100?text=Pic3" alt="Picture 3" onmouseover="upDate(this)" onmouseout="undo()">
+
+  <script src="script.js"></script>
+</body>
+</html>
