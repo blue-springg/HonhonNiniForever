@@ -36,7 +36,7 @@ function formatDate(date) {
         return date.toLocaleString('en-US', options);
     } catch (e) {
         console.error('Error formatting date:', e);
-        return 'Error';
+        return 'Error: Unable to display time';
     }
 }
 
@@ -60,12 +60,12 @@ function updateTimer() {
 function updateClocks() {
     const now = new Date();
     
-    // Honhon's time (Tehran, UTC+3:30)
-    const honhonTime = new Date(now.getTime() + 3.5 * 60 * 60 * 1000);
+    // Honhon's time (UTC+3:30 equivalent)
+    const honhonTime = new Date(now.getTime() + (3.5 * 60 * 60 * 1000));
     honhonTimeEl.textContent = formatDate(honhonTime);
 
-    // Nini's time (Doha, UTC+3:00, 30 minutes behind)
-    const niniTime = new Date(now.getTime() + 3 * 60 * 60 * 1000);
+    // Nini's time (UTC+3:00 equivalent, 30 minutes behind Honhon)
+    const niniTime = new Date(now.getTime() + (3 * 60 * 60 * 1000));
     niniTimeEl.textContent = formatDate(niniTime);
 }
 
