@@ -1,123 +1,90 @@
-// Puzzle data: Story-Driven Code Quest and Algorithm Flow
-const puzzles = [
-    {
-        title: "Story-Driven Code Quest: Fix Spaceship Thrusters",
-        blocks: ["let power = 50;", "power += 25;", "console.log(power);", "power = 100;"],
-        solution: ["let power = 50;", "power += 25;", "console.log(power);"],
-        expectedOutput: "75"
-    },
-    {
-        title: "Algorithm Flow: Bubble Sort Step",
-        blocks: ["for (let i = 0; i < n; i++)", "if (arr[j] > arr[j+1])", "swap(arr[j], arr[j+1])", "let temp = arr[j];"],
-        solution: ["for (let i = 0; i < n; i++)", "if (arr[j] > arr[j+1])", "let temp = arr[j];", "swap(arr[j], arr[j+1])"],
-        expectedOutput: "Sorted array"
-    }
+// Friendship start date
+const startDate = new Date('2021-06-11T00:00:00');
+
+// Friendship quotes
+const friendshipQuotes = [
+    "A friend like you, Nini, makes every moment brighter! 🌟",
+    "Honhon & Nini: Two hearts, one friendship, across timezones! 💖",
+    "Distance means nothing when our friendship is everything. 😊",
+    "From Instagram to forever, we're unstoppable! 🚀",
+    "Honhon & Nini: Best friends, best vibes, always and forever! 💕"
 ];
 
-let currentPuzzleIndex = 0;
-let workspaceBlocks = [];
-
 // DOM elements
-const puzzleBlocksEl = document.getElementById('puzzle-blocks');
-const workspaceEl = document.getElementById('workspace');
-const feedbackEl = document.getElementById('feedback');
-const checkSolutionBtn = document.getElementById('check-solution');
-const switchPuzzleBtn = document.getElementById('switch-puzzle');
-const puzzleTitleInput = document.getElementById('puzzle-title');
-const puzzleBlocksInput = document.getElementById('puzzle-blocks');
-const puzzleSolutionInput = document.getElementById('puzzle-solution');
-const savePuzzleBtn = document.getElementById('save-puzzle');
+const daysEl = document.getElementById('days');
+const hoursEl = document.getElementById('hours');
+const minutesEl = document.getElementById('minutes');
+const secondsEl = document.getElementById('seconds');
+const honhonTimeEl = document.getElementById('honhon-time');
+const niniTimeEl = document.getElementById('nini-time');
+const memoryQuoteBtn = document.getElementById('memory-quote');
+const quoteDisplayEl = document.getElementById('quote-display');
 
-// Initialize puzzle
-function loadPuzzle(index) {
-    const puzzle = puzzles[index];
-    puzzleBlocksEl.innerHTML = `<h3>${puzzle.title}</h3>`;
-    workspaceEl.innerHTML = '';
-    workspaceBlocks = [];
-    puzzle.blocks.forEach((block, i) => {
-        const blockEl = document.createElement('div');
-        blockEl.className = 'code-block';
-        blockEl.textContent = block;
-        blockEl.draggable = true;
-        blockEl.id = `block-${i}`;
-        blockEl.addEventListener('dragstart', dragStart);
-        puzzleBlocksEl.appendChild(blockEl);
-    });
-    workspaceEl.addEventListener('dragover', dragOver);
-    workspaceEl.addEventListener('drop', drop);
-    feedbackEl.textContent = '';
-}
-
-// Drag-and-drop handlers
-function dragStart(e) {
-    e.dataTransfer.setData('text/plain', e.target.id);
-    setTimeout(() => e.target.classList.add('dragging'), 0);
-}
-
-function dragOver(e) {
-    e.preventDefault();
-}
-
-function drop(e) {
-    e.preventDefault();
-    const blockId = e.dataTransfer.getData('text/plain');
-    const blockEl = document.getElementById(blockId);
-    blockEl.classList.remove('dragging');
-    workspaceEl.appendChild(blockEl);
-    workspaceBlocks = [...workspaceEl.querySelectorAll('.code-block')].map(el => el.textContent);
-}
-
-// Check solution
-function checkSolution() {
-    const puzzle = puzzles[currentPuzzleIndex];
-    const isCorrect = workspaceBlocks.length === puzzle.solution.length &&
-        workspaceBlocks.every((block, i) => block === puzzle.solution[i]);
-    
-    feedbackEl.textContent = isCorrect ? 'Correct! Great job!' : 'Incorrect. Try again!';
-    workspaceEl.querySelectorAll('.code-block').forEach(el => {
-        el.classList.remove('correct', 'incorrect');
-        el.classList.add(isCorrect ? 'correct' : 'incorrect');
-    });
-}
-
-// Switch puzzle
-function switchPuzzle() {
-    currentPuzzleIndex = (currentPuzzleIndex + 1) % puzzles.length;
-    loadPuzzle(currentPuzzleIndex);
-}
-
-// Save custom puzzle
-function savePuzzle() {
-    const title = puzzleTitleInput.value.trim();
-    const blocks = puzzleBlocksInput.value.trim().split('\n').filter(b => b);
-    const solution = puzzleSolutionInput.value.trim().split('\n').filter(b => b);
-    
-    if (title && blocks.length && solution.length) {
-        const newPuzzle = { title, blocks, solution, expectedOutput: 'Custom Output' };
-        puzzles.push(newPuzzle);
-        localStorage.setItem('customPuzzles', JSON.stringify(puzzles.slice(2)));
-        feedbackEl.textContent = 'Puzzle saved!';
-        puzzleTitleInput.value = '';
-        puzzleBlocksInput.value = '';
-        puzzleSolutionInput.value = '';
-    } else {
-        feedbackEl.textContent = 'Please fill all fields.';
+// Function to format date for display
+function formatDate(date) {
+    try {
+        const options = {
+            weekday: 'short',
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: true
+        };
+        return date.toLocaleString('en-US', options);
+    } catch (e) {
+        console.error('Error formatting date:', e);
+        return 'Error';
     }
 }
 
-// Load custom puzzles from localStorage
-function loadCustomPuzzles() {
-    const saved = localStorage.getItem('customPuzzles');
-    if (saved) {
-        puzzles.push(...JSON.parse(saved));
-    }
+// Function to update friendship timer
+function updateTimer() {
+    const now = new Date();
+    const diff = now - startDate;
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    daysEl.textContent = days;
+    hoursEl.textContent = hours;
+    minutesEl.textContent = minutes;
+    secondsEl.textContent = seconds;
 }
 
-// Event listeners
-checkSolutionBtn.addEventListener('click', checkSolution);
-switchPuzzleBtn.addEventListener('click', switchPuzzle);
-savePuzzleBtn.addEventListener('click', savePuzzle);
+// Function to update clocks
+function updateClocks() {
+    const now = new Date();
+    
+    // Honhon's time (Tehran, UTC+3:30)
+    const honhonTime = new Date(now.getTime() + 3.5 * 60 * 60 * 1000);
+    honhonTimeEl.textContent = formatDate(honhonTime);
 
-// Initialize
-loadCustomPuzzles();
-loadPuzzle(currentPuzzleIndex);
+    // Nini's time (Doha, UTC+3:00, 30 minutes behind)
+    const niniTime = new Date(now.getTime() + 3 * 60 * 60 * 1000);
+    niniTimeEl.textContent = formatDate(niniTime);
+}
+
+// Function to show random friendship quote
+function showFriendshipQuote() {
+    const quote = friendshipQuotes[Math.floor(Math.random() * friendshipQuotes.length)];
+    quoteDisplayEl.textContent = quote;
+}
+
+// Event listener for quote button
+memoryQuoteBtn.addEventListener('click', showFriendshipQuote);
+
+// Update every second
+setInterval(() => {
+    updateTimer();
+    updateClocks();
+}, 1000);
+
+// Initial update
+updateTimer();
+updateClocks();
+showFriendshipQuote();
