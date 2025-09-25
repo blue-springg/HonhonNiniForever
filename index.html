@@ -1,36 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Interactive Gallery</title>
-  <style>
-    #image {
-      background-color: #eee;
-      height: 300px;
-      width: 500px;
-      text-align: center;
-      line-height: 300px;
-      font-size: 20px;
-      color: #333;
-      background-size: cover;
-      margin-bottom: 20px;
-    }
-
-    .preview {
-      height: 100px;
-      margin: 10px;
-      cursor: pointer;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Honhon & Nini Friendship Counter</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-
-<div id="image">Hover over an image below to display here.</div>
-
-<img class="preview" src="images/hello1.jfif" alt="Photo 1" onmouseover="upDate(this)" onmouseout="undo()">
-<img class="preview" src="images/hello2.jfif" alt="Photo 2" onmouseover="upDate(this)" onmouseout="undo()">
-<img class="preview" src="images/hello3.jfif" alt="Photo 3" onmouseover="upDate(this)" onmouseout="undo()">
-
-  <script src="script.js"></script>
+    <header>
+        <h1>Honhon & Nini</h1>
+        <p class="subtitle">Our Long-Distance Friendship Adventure</p>
+    </header>
+    <div class="container">
+        <section class="counter">
+            <h2>Friends Since June 11, 2021</h2>
+            <div id="friendship-timer">
+                <span id="days">0</span> days
+                <span id="hours">0</span> hours
+                <span id="minutes">0</span> minutes
+                <span id="seconds">0</span> seconds
+            </div>
+            <p class="note">That's over 1567 days of awesome friendship! 🎉</p>
+        </section>
+        <section class="story">
+            <h2>Our Story</h2>
+            <p>We became friends on a sunny Friday, June 11, 2021. Even though we're long-distance with a 30-minute time difference, our bond is unbreakable! Honhon calls me Nini, and I call her Honhon. Here's to many more adventures! 💖</p>
+        </section>
+        <section class="clocks">
+            <h2>Our Times</h2>
+            <div class="clock">
+                <h3>Honhon's Time</h3>
+                <div id="honhon-time">Loading...</div>
+            </div>
+            <div class="clock">
+                <h3>Nini's Time</h3>
+                <div id="nini-time">Loading...</div>
+                <p class="note">(30 minutes behind Honhon)</p>
+            </div>
+        </section>
+    </div>
+    <div class="hearts">
+        <span class="heart">❤️</span>
+        <span class="heart">💕</span>
+        <span class="heart">💖</span>
+        <span class="heart">💗</span>
+        <span class="heart">💓</span>
+    </div>
+    <footer>
+        <p>Created with love by Honhon ❤️ | September 25, 2025</p>
+    </footer>
+    <script src="script.js"></script>
 </body>
 </html>
