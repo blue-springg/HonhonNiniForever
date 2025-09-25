@@ -19,55 +19,58 @@ body {
 
 header {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
 h1 {
-    font-size: 3rem;
+    font-size: 2.8rem;
     color: #ff69b4; /* Hot pink */
-    text-shadow: 0 2px 5px rgba(255, 105, 180, 0.3);
+    text-shadow: 0 2px 4px rgba(255, 105, 180, 0.2);
 }
 
 .subtitle {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     color: #ff69b4;
-    margin-top: 10px;
+    margin-top: 8px;
+    font-weight: 400;
 }
 
 /* Container */
 .container {
     max-width: 800px;
     width: 100%;
-    background: rgba(255, 255, 255, 0.85);
-    border-radius: 20px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    margin-bottom: 40px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+    padding: 25px;
+    margin-bottom: 30px;
 }
 
 /* Sections */
 section {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     text-align: center;
 }
 
 h2 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: #ff69b4;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    font-weight: 600;
 }
 
 /* Counter */
 .counter {
     background: #fff0f5; /* Lavender blush */
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(255, 105, 180, 0.2);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(255, 105, 180, 0.15);
 }
 
 #friendship-timer {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     color: #ff1493; /* Deep pink */
+    margin: 10px 0;
 }
 
 #friendship-timer span {
@@ -76,27 +79,29 @@ h2 {
 }
 
 .note {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: #808080;
-    margin-top: 10px;
+    font-weight: 400;
+    margin-top: 8px;
 }
 
 /* Story */
 .story p {
-    font-size: 1.2rem;
-    line-height: 1.6;
+    font-size: 1.1rem;
+    line-height: 1.5;
     color: #555;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 #memory-quote {
-    padding: 12px 25px;
+    padding: 10px 20px;
     background: #ff69b4;
     color: #fff;
     border: none;
-    border-radius: 15px;
+    border-radius: 10px;
     cursor: pointer;
     font-weight: 600;
+    font-size: 1rem;
     transition: transform 0.2s, background 0.2s;
 }
 
@@ -106,37 +111,57 @@ h2 {
 }
 
 .quote {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: #ff69b4;
-    margin-top: 15px;
+    margin-top: 10px;
     animation: fadeIn 0.5s ease;
 }
 
 /* Clocks */
 .clocks {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    background: #fff0f5;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(255, 105, 180, 0.15);
+}
+
+.clock-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    justify-items: center;
 }
 
 .clock {
-    background: #fff0f5;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(255, 105, 180, 0.2);
-    margin: 10px;
-    width: 200px;
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #ffe4e1;
+    transition: transform 0.2s;
+    width: 100%;
+    max-width: 200px;
+}
+
+.clock:hover {
+    transform: translateY(-2px);
 }
 
 .clock h3 {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     color: #ff69b4;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
+    font-weight: 600;
 }
 
 .clock div {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     color: #ff1493;
+    font-weight: 400;
+}
+
+.clock .note {
+    font-size: 0.9rem;
+    margin-top: 5px;
 }
 
 /* Hearts animation */
@@ -152,9 +177,9 @@ h2 {
 
 .heart {
     position: absolute;
-    font-size: 2rem;
+    font-size: 1.8rem;
     animation: float 5s linear infinite;
-    opacity: 0.7;
+    opacity: 0.6;
 }
 
 .heart:nth-child(1) { left: 10%; animation-duration: 6s; }
@@ -164,7 +189,7 @@ h2 {
 .heart:nth-child(5) { left: 90%; animation-duration: 6s; animation-delay: 4s; }
 
 @keyframes float {
-    0% { transform: translateY(100vh) rotate(0deg); opacity: 0.7; }
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 0.6; }
     100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
 }
 
@@ -175,17 +200,18 @@ h2 {
 
 /* Footer */
 footer {
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: #808080;
     text-align: center;
     margin-top: auto;
+    font-weight: 400;
 }
 
 /* Responsive design */
 @media (max-width: 600px) {
-    h1 { font-size: 2.5rem; }
-    h2 { font-size: 1.8rem; }
-    .container { padding: 20px; }
-    .clocks { flex-direction: column; }
-    .clock { width: 100%; }
+    h1 { font-size: 2.3rem; }
+    h2 { font-size: 1.6rem; }
+    .container { padding: 15px; }
+    .clock-grid { grid-template-columns: 1fr; }
+    .clock { max-width: 100%; }
 }
