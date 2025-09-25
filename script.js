@@ -46,13 +46,13 @@ function updateClocks() {
         hour: '2-digit', 
         minute: '2-digit', 
         second: '2-digit',
-        timeZone: 'Asia/Tehran' // Honhon's timezone
+        timeZone: 'Asia/Tehran' // Honhon's timezone (not displayed)
     };
 
     const now = new Date();
     honhonTimeEl.textContent = now.toLocaleString('en-US', { ...options, timeZone: 'Asia/Tehran' });
 
-    const niniTime = new Date(now.getTime() - 30 * 60 * 1000); // Doha, 30 minutes behind
+    const niniTime = new Date(now.getTime() - 30 * 60 * 1000); // Doha, 30 minutes behind (not displayed)
     niniTimeEl.textContent = niniTime.toLocaleString('en-US', { ...options, timeZone: 'Asia/Qatar' });
 }
 
