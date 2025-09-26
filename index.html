@@ -3,14 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Honhon & Nini Friendship Counter</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>Honhon & Nini</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f9f7fc, #e8f0f5);
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #ff7a9b;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #ff9ab6;
+            font-weight: 300;
+        }
+
+        .container {
+            max-width: 700px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        section {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: #ff7a9b;
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+
+        .counter {
+            background: #fff1f4;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        #friendship-timer {
+            font-size: 1.6rem;
+            color: #ff5a80;
+        }
+
+        #friendship-timer span {
+            color: #ff7a9b;
+            font-weight: 600;
+        }
+
+        .note {
+            font-size: 1rem;
+            color: #6b7280;
+            margin-top: 8px;
+        }
+
+        .story p {
+            font-size: 1.1rem;
+            line-height: 1.5;
+            color: #4a4a4a;
+        }
+
+        .clocks {
+            background: #fff1f4;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .clock-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 10px;
+        }
+
+        .clock {
+            background: #ffffff;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ffe4e9;
+        }
+
+        .clock h3 {
+            font-size: 1.2rem;
+            color: #ff7a9b;
+            font-weight: 400;
+        }
+
+        .clock div {
+            font-size: 1.1rem;
+            color: #ff5a80;
+        }
+
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 1.2rem;
+            animation: float 7s linear infinite;
+            opacity: 0.5;
+        }
+
+        .heart:nth-child(1) { left: 20%; animation-duration: 6s; }
+        .heart:nth-child(2) { left: 40%; animation-duration: 5s; animation-delay: 1.5s; }
+        .heart:nth-child(3) { left: 60%; animation-duration: 7s; animation-delay: 3s; }
+
+        @keyframes float {
+            0% { transform: translateY(100vh); opacity: 0.5; }
+            100% { transform: translateY(-10vh); opacity: 0; }
+        }
+
+        footer {
+            font-size: 0.9rem;
+            color: #6b7280;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.5rem; }
+            .container { padding: 12px; }
+            .clock-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
     <header>
         <h1>Honhon & Nini</h1>
-        <p class="subtitle">Our Long-Distance Friendship Adventure</p>
+        <p class="subtitle">Friends Across Time</p>
     </header>
     <div class="container">
         <section class="counter">
@@ -18,16 +170,14 @@
             <div id="friendship-timer">
                 <span id="days">0</span> days
                 <span id="hours">0</span> hours
-                <span id="minutes">0</span> minutes
-                <span id="seconds">0</span> seconds
+                <span id="minutes">0</span> mins
+                <span id="seconds">0</span> secs
             </div>
-            <p class="note">That's over 1567 days of an incredible friendship! 🎉</p>
+            <p class="note">Counting every moment of our friendship! 💞</p>
         </section>
         <section class="story">
             <h2>Our Story</h2>
-            <p>On a quiet night, June 11, 2021, our long-distance friendship began on Instagram. At around 2 AM, Nini sent Honhon a message asking for a picture. Honhon replied the next morning with warmth. In a bold move—her first ever—Honhon asked Nini to be friends. From that moment, at the age of 20, our bond grew stronger across a 30-minute time difference, and we’ve been inseparable ever since. Here’s to Honhon & Nini, friends forever! 💖</p>
-            <button id="memory-quote">Show Friendship Quote</button>
-            <div id="quote-display" class="quote"></div>
+            <p>It all started on June 11, 2021, when Nini sent Honhon a sweet Instagram DM asking for a pic. Honhon replied the next morning, and in a bold move, asked Nini to be friends. From that day, at 20 years old, across a 30-minute time difference, our friendship has only grown stronger. Here's to Honhon & Nini, always! 💫</p>
         </section>
         <section class="clocks">
             <h2>Our Times</h2>
@@ -39,21 +189,87 @@
                 <div class="clock">
                     <h3>Nini's Time</h3>
                     <div id="nini-time">Loading...</div>
-                    <p class="note">(30 minutes behind Honhon)</p>
+                    <p class="note">30 mins behind Honhon</p>
                 </div>
             </div>
         </section>
     </div>
     <div class="hearts">
-        <span class="heart">❤️</span>
-        <span class="heart">💕</span>
-        <span class="heart">💖</span>
         <span class="heart">💗</span>
-        <span class="heart">💓</span>
+        <span class="heart">💖</span>
+        <span class="heart">💕</span>
     </div>
     <footer>
-        <p>Created with love by Honhon for Nini ❤️ | September 25, 2025</p>
+        <p>Made by Honhon for Nini | September 2025</p>
     </footer>
-    <script src="script.js"></script>
+    <script>
+        // Friendship start date
+        const startDate = new Date('2021-06-11T00:00:00');
+
+        // DOM elements
+        const daysEl = document.getElementById('days');
+        const hoursEl = document.getElementById('hours');
+        const minutesEl = document.getElementById('minutes');
+        const secondsEl = document.getElementById('seconds');
+        const honhonTimeEl = document.getElementById('honhon-time');
+        const niniTimeEl = document.getElementById('nini-time');
+
+        // Format date for display
+        function formatDate(date) {
+            try {
+                const options = {
+                    weekday: 'short',
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: true
+                };
+                return date.toLocaleString('en-US', options);
+            } catch (e) {
+                console.error('Error formatting date:', e);
+                return 'Error: Unable to display time';
+            }
+        }
+
+        // Update friendship timer
+        function updateTimer() {
+            const now = new Date();
+            const diff = now - startDate;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            daysEl.textContent = days;
+            hoursEl.textContent = hours;
+            minutesEl.textContent = minutes;
+            secondsEl.textContent = seconds;
+        }
+
+        // Update clocks - Honhon's time is IRST (UTC+3:30), Nini's is AST (UTC+3:00)
+        function updateClocks() {
+            const now = new Date();
+            // Honhon's time (IRST, UTC+3:30)
+            const honhonTime = new Date(now.toLocaleString("en-US", {timeZone: "Asia/Tehran"}));
+            honhonTimeEl.textContent = formatDate(honhonTime);
+            // Nini's time (AST, UTC+3:00)
+            const niniTime = new Date(now.toLocaleString("en-US", {timeZone: "Asia/Qatar"}));
+            niniTimeEl.textContent = formatDate(niniTime);
+        }
+
+        // Update every second
+        setInterval(() => {
+            updateTimer();
+            updateClocks();
+        }, 1000);
+
+        // Initial update
+        updateTimer();
+        updateClocks();
+    </script>
 </body>
 </html>
